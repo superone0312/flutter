@@ -9,7 +9,19 @@ class _MainState extends State<Main> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(child: Text('This will show your local time.')),
+      body: SafeArea(
+        child: Column(
+          children: <Widget>[
+            FlatButton.icon(
+              onPressed: (){
+                Navigator.pushNamed(context, '/place');
+              },
+              icon: Icon(Icons.edit_location),
+              label: Text('edit location'),
+              ),
+          ], 
+        )
+      ),
     );
   }
 }

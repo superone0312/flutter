@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:world_time/screens/index.dart';
+import 'screens/fetching.dart';
+import 'screens/your_site.dart';
+import 'screens/index.dart';
 
 void main() => runApp(
   MaterialApp(
-  home:Main(),
+  initialRoute: '/index',
+  routes:{
+    '/': (context) => Fetching(),
+    '/index': (context) => Main(),
+    '/place': (context) => YourPlace(),
+    },
   )
 );
