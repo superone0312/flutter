@@ -5,7 +5,7 @@ import 'screens/index.dart';
 
 void main() => runApp(
   MaterialApp(
-  initialRoute: '/index',
+  initialRoute: '/',
   routes:{
     '/': (context) => Fetching(),
     '/index': (context) => Main(),
