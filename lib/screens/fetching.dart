@@ -9,17 +9,24 @@ class Fetching extends StatefulWidget {
 
 class _FetchingState extends State<Fetching> {
 
-  void getInfo() async {
-    String apiUrl = 'https://jsonplaceholder.typicode.com/todos/1';
+  void getWatch() async {
+    String apiUrl = 'http://worldtimeapi.org/api/timezone/Asia/Shanghai';
     Response response = await get(apiUrl);
-    Map dict = jsonDecode(response.body);
-    print(dict['id']);
+    Map data = jsonDecode(response.body);
+    //print(data);
+    String datetime = data['datetime'];
+    String offset = data['utc_offset'].substring(1,3);
+    //print('$datatime and $offset');
+
+    DateTime now = DateTime.parse(datetime);
+    now =  now.add(Duration(hours: int.parse(offset)));
+    print(now);
   }
 
   @override
   void initState() {
     super.initState();
-    getInfo();
+    getWatch();
   }
 
   @override
