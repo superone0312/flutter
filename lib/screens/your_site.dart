@@ -6,8 +6,16 @@ class YourPlace extends StatefulWidget {
 }
 
 class _YourPlaceState extends State<YourPlace> {
+  int counter = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    print('initial start');
+  }
   @override
   Widget build(BuildContext context) {
+    print('builder run');
     return Scaffold(
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
@@ -16,7 +24,14 @@ class _YourPlaceState extends State<YourPlace> {
         centerTitle: true,
         elevation: 0,
       ),
-      body: Text('select your place!'),
+      body: RaisedButton(
+        child: Text('counter is $counter'),
+        onPressed: (){
+          setState(() {
+            counter += 1;
+          });
+        },  
+      ),
     );
   }
 }
