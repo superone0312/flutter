@@ -11,7 +11,7 @@ class Fetching extends StatefulWidget {
 class _FetchingState extends State<Fetching> {
 
   void setupWorldTime() async {
-  WorldTime instance = WorldTime(place: 'London', flag: 'China.png', url: 'Europe/London');
+  WorldTime instance = WorldTime(place: 'London', flag: 'uk.png', url: 'Europe/London');
   await instance.getWatch();
   
   Navigator.pushReplacementNamed(context, '/index', arguments: {

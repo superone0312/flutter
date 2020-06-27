@@ -1,5 +1,5 @@
-
 import 'package:flutter/material.dart';
+import 'package:word_time/services/world_time.dart';
 
 class YourPlace extends StatefulWidget {
   @override
@@ -7,7 +7,14 @@ class YourPlace extends StatefulWidget {
 }
 
 class _YourPlaceState extends State<YourPlace> {
-  int counter = 0;
+   List<WorldTime> places = [
+     WorldTime(url: 'Europe/London', place: 'London', flag: 'uk.png'),
+     WorldTime(url: 'Europe/Berlin', place: 'Berlin', flag: 'germany.png'),
+     WorldTime(url: 'Africa/Cairo', place: 'Cairo', flag: 'egypt.png'),
+     WorldTime(url: 'Africa/Nairobi', place: 'Nairobi', flag: 'kenya.png'),
+     WorldTime(url: 'America/New_York', place: 'New York', flag: 'usa.png'),
+     WorldTime(url: 'Asia/Shanghai', place: 'Shanghai', flag: 'china.png'),
+   ];
 
   @override
   Widget build(BuildContext context) {
@@ -20,13 +27,26 @@ class _YourPlaceState extends State<YourPlace> {
         centerTitle: true,
         elevation: 0,
       ),
-      body: RaisedButton(
-        child: Text('counter is $counter'),
-        onPressed: (){
-          setState(() {
-            counter += 1;
-          });
-        },  
+      body: ListView.builder(
+          itemCount: places.length,
+          itemBuilder: (context, index){
+            return Padding(
+              padding: const EdgeInsets.symmetric(vertical: 1, horizontal: 4),
+              child: Card(
+                child: ListTile(
+                  onTap: (){
+                    print(places[index].url);
+                  },
+                  title: Text(places[index].place),
+                  leading: CircleAvatar(
+                    backgroundImage:AssetImage(
+                      'lib/assets/pics/${places[index].flag}'
+                    ), 
+                  ),
+                ),
+              ),
+            );
+          },
       ),
     );
   }
