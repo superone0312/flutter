@@ -10,7 +10,7 @@ class _MainState extends State<Main> {
 
   @override
   Widget build(BuildContext context) {
-    data = ModalRoute.of(context).settings.arguments;
+    data = data.isNotEmpty ? data : ModalRoute.of(context).settings.arguments;
     print(data);
     String coverPic = data['isDark'] ? 'evening.jpeg' : 'daytime.jpg';
     Color nowColor = data['isDark'] ? Colors.white : Colors.black;
@@ -32,8 +32,16 @@ class _MainState extends State<Main> {
             child: Column(
               children: <Widget>[
                 FlatButton.icon(
-                  onPressed: (){
-                    Navigator.pushNamed(context, '/place');
+                  onPressed: () async {
+                    dynamic result = await Navigator.pushNamed(context, '/place');
+                    setState(() {
+                      data = {
+                        'clock' : result['clock'],
+                        'place' : result['place'],
+                        'flag' : result['flag'],
+                        'isDark' : result['isDark'],
+                      };
+                    });
                   },
                   icon: Icon(
                     Icons.edit_location,

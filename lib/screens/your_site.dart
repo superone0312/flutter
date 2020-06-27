@@ -16,6 +16,18 @@ class _YourPlaceState extends State<YourPlace> {
      WorldTime(url: 'Asia/Shanghai', place: 'Shanghai', flag: 'china.png'),
    ];
 
+void updateClock(index) async{
+  WorldTime instance2 = places[index];
+  await instance2.getWatch();
+
+  Navigator.pop(context, {
+    'place': instance2.place,
+    'flag': instance2.flag,
+    'clock': instance2.clock ,
+    'isDark': instance2.isDark,
+  });
+}
+
   @override
   Widget build(BuildContext context) {
     print('builder run');
@@ -35,7 +47,7 @@ class _YourPlaceState extends State<YourPlace> {
               child: Card(
                 child: ListTile(
                   onTap: (){
-                    print(places[index].url);
+                    updateClock(index);
                   },
                   title: Text(places[index].place),
                   leading: CircleAvatar(
