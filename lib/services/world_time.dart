@@ -7,6 +7,7 @@ class WorldTime {
   String clock;
   String flag;
   String url;
+  bool isDark;
 
   WorldTime({
     this.place, this.flag, this.url
@@ -25,6 +26,8 @@ class WorldTime {
       DateTime now = DateTime.parse(datetime);
       now =  now.add(Duration(hours: int.parse(offset)));
       clock = DateFormat.jm().format(now);
+      //print(now.hour.toString());
+      isDark = now.hour > 6 && now.hour < 20 ? false : true;
     }
     catch(e){
       print("Error message: $e");
