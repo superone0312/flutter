@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:word_time/services/world_time.dart';
 
@@ -7,13 +8,14 @@ class Fetching extends StatefulWidget {
 }
 
 class _FetchingState extends State<Fetching> {
-  String clock = 'Data on its way ...';
 
   void setupWorldTime() async {
   WorldTime instance = WorldTime(place: 'Shanghai', flag: 'China.png', url: 'Asia/Shanghai');
   await instance.getWatch();
-  setState(() {
-    clock = instance.clock;  
+  Navigator.pushReplacementNamed(context, '/index', arguments: {
+    'place': instance.place,
+    'flag': instance.flag,
+    'clock': instance.clock,
   });
   }
 
@@ -27,7 +29,7 @@ class _FetchingState extends State<Fetching> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: 
-      SafeArea(child: Text(clock)),
+      SafeArea(child: Text('Fetching...')),
     );
   }
 }

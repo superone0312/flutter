@@ -6,9 +6,16 @@ class Main extends StatefulWidget {
 }
 
 class _MainState extends State<Main> {
+  Map data = {};
+
   @override
   Widget build(BuildContext context) {
+    data = ModalRoute.of(context).settings.arguments;
+    print(data);
     return Scaffold(
+      appBar: AppBar(
+        title: Text('Home page'),
+      ),
       body: SafeArea(
         child: Column(
           children: <Widget>[
